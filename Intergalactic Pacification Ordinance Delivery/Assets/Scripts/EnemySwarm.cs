@@ -37,11 +37,13 @@ public class EnemySwarm : MonoBehaviour
 
     private void DetectPlayer()
     {
-        targetDirection = transform.position - player.position;
+        targetDirection = player.position - transform.position;
+
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, targetDirection, out hit, Mathf.Infinity, playerLayer))
+        if (Physics.Raycast(transform.position, targetDirection, out hit, Mathf.Infinity))
         {
-            detected = true;
+            if (hit.transform.CompareTag("Player"))
+                detected = true;
         }
         else
         {
