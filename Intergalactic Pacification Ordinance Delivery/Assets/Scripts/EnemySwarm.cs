@@ -9,14 +9,12 @@ public class EnemySwarm : MonoBehaviour
     [SerializeField] float speed = 5f;
     private Transform player;
     private Vector3 targetDirection;
-    private LayerMask playerLayer;
     private bool detected;
     private bool caught;
 
     private void Start()
     {
-        player = GameObject.Find("Player").transform;
-        playerLayer = LayerMask.NameToLayer("Player");
+        player = GameObject.Find("Player Container").transform;
     }
 
     private void Update()
@@ -58,7 +56,7 @@ public class EnemySwarm : MonoBehaviour
         float step = speed * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, player.position, step);
 
-        if (Vector3.Distance(transform.position, player.position) < 0.001f)
+        if (Vector3.Distance(transform.position, player.position) < 1f)
         {
             caught = true;
         }
