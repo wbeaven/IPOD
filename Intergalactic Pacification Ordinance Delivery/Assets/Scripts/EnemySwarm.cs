@@ -1,12 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
+using Ami.BroAudio;
 
 public class EnemySwarm : MonoBehaviour
 {
     [SerializeField] Transform[] drones;
-    [SerializeField] float speed = 5f;
+    [SerializeField] float speed = 8f;
+    [SerializeField] SoundID buzzsawSFX = default;
+
     private Transform player;
     private Vector3 targetDirection;
     private bool detected;
@@ -40,6 +40,7 @@ public class EnemySwarm : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, targetDirection, out hit, Mathf.Infinity))
         {
+            print(hit.transform.name);
             if (hit.transform.CompareTag("Player"))
                 detected = true;
         }
@@ -65,6 +66,7 @@ public class EnemySwarm : MonoBehaviour
     private void PlayerCaught()
     {
         transform.position = player.position;
+        buzzsawSFX.Play();
         // make drones orbit around
         // start buzzing sound effects
         // start applying damage for each drone alive

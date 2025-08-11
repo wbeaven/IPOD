@@ -5,9 +5,16 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] GameObject explosion;
+    [SerializeField] GameObject visuals;
 
     public float health = 100f;
     bool alive = true;
+    EnemyShooting enemyShooting;
+
+    private void Start()
+    {
+        enemyShooting = GetComponent<EnemyShooting>();
+    }
 
     private void Update()
     {
@@ -15,9 +22,12 @@ public class EnemyHealth : MonoBehaviour
         {
             alive = false;
             GetComponent<SphereCollider>().enabled = false;
-            transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
-            GetComponent<EnemyShooting>().bullet.gameObject.SetActive(false);
-            GetComponent<EnemyShooting>().enabled = false;
+            visuals.SetActive(false);
+            if (enemyShooting != null)
+            {
+                GetComponent<EnemyShooting>().bullet.gameObject.SetActive(false);
+                GetComponent<EnemyShooting>().enabled = false;
+            }
             Instantiate(explosion, transform);
         }
     }

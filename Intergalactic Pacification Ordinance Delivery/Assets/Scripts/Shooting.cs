@@ -43,8 +43,8 @@ public class Shooting : MonoBehaviour
             canLeftShoot = false;
             StartCoroutine(LeftCannonCooldown());
             leftCooldownIcon.fillAmount = 0f;      
-            Instantiate(leftMuzzlePrefab, leftMuzzle);
-            //StartCoroutine(MuzzleTimer(leftMuzzle));
+            //Instantiate(leftMuzzlePrefab, leftMuzzle);
+            StartCoroutine(MuzzleTimer(leftMuzzlePrefab));
             BroAudio.Play(cannonAudio);
 
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out RaycastHit hit, Mathf.Infinity))
@@ -59,8 +59,8 @@ public class Shooting : MonoBehaviour
             canRightShoot = false;
             StartCoroutine(RightCannonCooldown());
             rightCooldownIcon.fillAmount = 0f;
-            Instantiate(rightMuzzlePrefab, rightMuzzle);
-            //StartCoroutine(MuzzleTimer(rightMuzzle));
+            //Instantiate(rightMuzzlePrefab, rightMuzzle);
+            StartCoroutine(MuzzleTimer(rightMuzzlePrefab));
             BroAudio.Play(cannonAudio);
 
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out RaycastHit hit, Mathf.Infinity))
@@ -78,7 +78,10 @@ public class Shooting : MonoBehaviour
         //explosion.transform.position = hit.point;
         if (hitObject.CompareTag("Destructible"))
         {
-            hitObject.GetComponent<Destructible>().Damage(mainCannonDmg);
+            if (hitObject.GetComponent<Destructible>() != null)
+                hitObject.GetComponent<Destructible>().Damage(mainCannonDmg);
+            else if (hitObject.GetComponent<EnemyHealth>() != null)
+                hitObject.GetComponent<EnemyHealth>().Damage(mainCannonDmg);
         }
     }
 
@@ -94,10 +97,11 @@ public class Shooting : MonoBehaviour
         canRightShoot = true;
     }
 
-    //private IEnumerator MuzzleTimer(GameObject muzzle)
-    //{
-    //    yield return new WaitForSeconds(0.1f);
-    //    muzzle.SetActive(false);
-    //}
+    private IEnumerator MuzzleTimer(GameObject muzzle)
+    {
+        muzzle.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        muzzle.SetActive(false);
+    }
 
 }
