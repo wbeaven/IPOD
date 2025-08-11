@@ -60,15 +60,18 @@ public class EnemySwarm : MonoBehaviour
         if (Vector3.Distance(transform.position, player.position) < 1f)
         {
             caught = true;
+            foreach (var drone in drones)
+            {
+                drone.GetComponent<EnemySwarmDamage>().isDamaging = true;
+            }
+            buzzsawSFX.Play();
         }
     }
 
     private void PlayerCaught()
     {
         transform.position = player.position;
-        buzzsawSFX.Play();
         // make drones orbit around
-        // start buzzing sound effects
         // start applying damage for each drone alive
     }
 }
