@@ -21,15 +21,21 @@ public class EnemySwarmDamage : MonoBehaviour
     {
         if (enemyHealth.health > 0 && isDamaging)
         {
-            StartCoroutine(DamageTick());
-            isDamaging = false;
+            DealDamage();
         }
+        transform.LookAt(player.position);
+    }
+
+    private void DealDamage()
+    {
+        isDamaging = false;
+        StartCoroutine(DamageTick());
     }
 
     private IEnumerator DamageTick()
     {
-        yield return new WaitForSeconds(damageInterval);
         player.GetComponent<PlayerHealth>().TakeDamage(damage);
-        StartCoroutine(DamageTick());
+        yield return new WaitForSeconds(damageInterval);
+        isDamaging = true;
     }
 }
