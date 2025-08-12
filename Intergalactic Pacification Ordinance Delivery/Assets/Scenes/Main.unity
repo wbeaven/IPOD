@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731704, g: 0.13414727, b: 0.121078536, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -859,7 +859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91e82b6d55a93b54abed3e8e63aa8fcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 0.2
   damageInterval: 1
   isDamaging: 0
 --- !u!1 &110427336
@@ -1496,7 +1496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91e82b6d55a93b54abed3e8e63aa8fcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 0.2
   damageInterval: 1
   isDamaging: 0
 --- !u!1001 &254160546
@@ -2211,7 +2211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91e82b6d55a93b54abed3e8e63aa8fcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 0.2
   damageInterval: 1
   isDamaging: 0
 --- !u!1 &400500280
@@ -2578,7 +2578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91e82b6d55a93b54abed3e8e63aa8fcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 0.2
   damageInterval: 1
   isDamaging: 0
 --- !u!114 &437596481
@@ -3735,7 +3735,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91e82b6d55a93b54abed3e8e63aa8fcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 0.2
   damageInterval: 1
   isDamaging: 0
 --- !u!1 &620301176
@@ -4697,7 +4697,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91e82b6d55a93b54abed3e8e63aa8fcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 0.2
   damageInterval: 1
   isDamaging: 0
 --- !u!1 &776796845
@@ -5174,7 +5174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91e82b6d55a93b54abed3e8e63aa8fcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 0.2
   damageInterval: 1
   isDamaging: 0
 --- !u!114 &880373776
@@ -7983,7 +7983,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91e82b6d55a93b54abed3e8e63aa8fcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 0.2
   damageInterval: 1
   isDamaging: 0
 --- !u!1 &1631629658 stripped
@@ -8134,7 +8134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91e82b6d55a93b54abed3e8e63aa8fcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 0.2
   damageInterval: 1
   isDamaging: 0
 --- !u!1 &1665801740
@@ -8562,7 +8562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91e82b6d55a93b54abed3e8e63aa8fcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 0.2
   damageInterval: 1
   isDamaging: 0
 --- !u!1 &1744564919
@@ -9047,6 +9047,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stationary Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 9141702273092302700, guid: 92e038387ec827a4ab4cde5e83434abd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9194,7 +9199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91e82b6d55a93b54abed3e8e63aa8fcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 0.2
   damageInterval: 1
   isDamaging: 0
 --- !u!1 &1847724745
@@ -10256,7 +10261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91e82b6d55a93b54abed3e8e63aa8fcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 0.2
   damageInterval: 1
   isDamaging: 0
 --- !u!1 &2029914821

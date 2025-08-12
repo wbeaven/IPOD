@@ -57,7 +57,7 @@ public class EnemySwarm : MonoBehaviour
         float step = speed * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, player.position, step);
 
-        if (Vector3.Distance(transform.position, player.position) < 1f)
+        if (Vector3.Distance(transform.position, player.position) < 2f)
         {
             caught = true;
             foreach (var drone in drones)
@@ -72,6 +72,5 @@ public class EnemySwarm : MonoBehaviour
     {
         transform.position = player.position;
         // make drones orbit around
-        // start applying damage for each drone alive
     }
 }
