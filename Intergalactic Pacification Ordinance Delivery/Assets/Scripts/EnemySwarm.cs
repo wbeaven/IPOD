@@ -5,7 +5,7 @@ using System.Collections;
 public class EnemySwarm : MonoBehaviour
 {
     [SerializeField] Transform[] drones;
-    [SerializeField] float speed = 8f;
+    [SerializeField] float speed = 8f, rotationSpeed = 100f;
     [SerializeField] SoundID buzzsawSFX = default;
 
     private Transform player;
@@ -74,7 +74,7 @@ public class EnemySwarm : MonoBehaviour
     private void PlayerCaught()
     {
         transform.position = player.position;
-        // make drones orbit around
+        transform.Rotate(new Vector3(0, 0, rotationSpeed * Time.deltaTime));
     }
 
     public void Destroyed()
