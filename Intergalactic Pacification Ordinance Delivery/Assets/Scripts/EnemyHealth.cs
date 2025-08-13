@@ -10,10 +10,12 @@ public class EnemyHealth : MonoBehaviour
     public float health = 100f;
     bool alive = true;
     EnemyShooting enemyShooting;
+    EnemySwarm enemySwarm;
 
     private void Start()
     {
         enemyShooting = GetComponent<EnemyShooting>();
+        enemySwarm = GetComponentInParent<EnemySwarm>();
     }
 
     private void Update()
@@ -27,6 +29,10 @@ public class EnemyHealth : MonoBehaviour
             {
                 GetComponent<EnemyShooting>().bullet.gameObject.SetActive(false);
                 GetComponent<EnemyShooting>().enabled = false;
+            }
+            if (enemySwarm != null)
+            {
+                enemySwarm.Destroyed();
             }
             Instantiate(explosion, transform);
         }

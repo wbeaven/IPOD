@@ -1,5 +1,6 @@
 using UnityEngine;
 using Ami.BroAudio;
+using System.Collections;
 
 public class EnemySwarm : MonoBehaviour
 {
@@ -8,9 +9,11 @@ public class EnemySwarm : MonoBehaviour
     [SerializeField] SoundID buzzsawSFX = default;
 
     private Transform player;
+    private EnemyHealth droneHealth;
     private Vector3 targetDirection;
     private bool detected;
     private bool caught;
+    private int destroyedDrones = 0;
 
     private void Start()
     {
@@ -72,5 +75,18 @@ public class EnemySwarm : MonoBehaviour
     {
         transform.position = player.position;
         // make drones orbit around
+    }
+
+    public void Destroyed()
+    {
+        destroyedDrones += 1;
+        if (destroyedDrones == drones.Length)
+            StartCoroutine(DestructionTimer());
+    }
+
+    private IEnumerator DestructionTimer()
+    {
+        yield return new WaitForSeconds(1);
+        transform.gameObject.SetActive(false);
     }
 }

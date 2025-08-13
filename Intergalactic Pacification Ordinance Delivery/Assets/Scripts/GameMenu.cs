@@ -10,14 +10,14 @@ public class GameMenu : MonoBehaviour
     [SerializeField] SoundID gameBGM = default, buttonSFX = default;
 
     MouseLook mouseLook;
-    Shooting shooting;
+    PlayerShooting shooting;
 
     bool settingsOpen;
 
     void Start()
     {
         mouseLook = player.GetComponent<MouseLook>();
-        shooting = player.GetComponent<Shooting>();
+        shooting = player.GetComponent<PlayerShooting>();
         BroAudio.Play(gameBGM);
     }
 

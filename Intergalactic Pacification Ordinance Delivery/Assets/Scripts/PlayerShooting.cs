@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Ami.BroAudio;
 
-public class Shooting : MonoBehaviour
+public class PlayerShooting : MonoBehaviour
 {
     [SerializeField] float mainCannonDmg = 10f;
     [SerializeField] float cooldownTime = 0.5f;
