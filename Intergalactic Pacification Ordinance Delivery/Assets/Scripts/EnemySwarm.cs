@@ -74,7 +74,7 @@ public class EnemySwarm : MonoBehaviour
     private void PlayerCaught()
     {
         transform.position = player.position;
-        transform.Rotate(new Vector3(0, 0, rotationSpeed * Time.deltaTime));
+        //transform.Rotate(new Vector3(0, 0, rotationSpeed * Time.deltaTime));
     }
 
     public void Destroyed()

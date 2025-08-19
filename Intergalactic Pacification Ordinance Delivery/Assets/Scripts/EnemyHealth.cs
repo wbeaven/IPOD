@@ -15,7 +15,7 @@ public class EnemyHealth : MonoBehaviour
     private void Start()
     {
         enemyShooting = GetComponent<EnemyShooting>();
-        enemySwarm = GetComponentInParent<EnemySwarm>();
+        enemySwarm = transform.parent.GetComponentInParent<EnemySwarm>();
     }
 
     private void Update()
