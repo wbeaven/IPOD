@@ -9,7 +9,7 @@ public class EnemyShooting : MonoBehaviour
     public Transform bullet;
     [SerializeField] float damage = 5f, speed = 50f, cooldown = 1f, lifetime = 3f;
     [SerializeField] bool homing;
-    [SerializeField] Transform lookAtMesh, baseSwivel, barrelSwivel;
+    [SerializeField] Transform lookAtMesh;
 
     Transform hitObject, player, follower;
     bool fired, shooting;
