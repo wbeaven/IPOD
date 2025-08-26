@@ -4,20 +4,22 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using Ami.BroAudio;
+using static UnityEngine.GraphicsBuffer;
 
 public class PlayerShooting : MonoBehaviour
 {
     [SerializeField] float mainCannonDmg = 10f;
     [SerializeField] float cooldownTime = 0.5f;
-    [SerializeField] Transform explosion; // Temp hit animation
+    private GameObject hitFX;
     [SerializeField] Image leftCooldownIcon, rightCooldownIcon;
-    [SerializeField] Transform leftMuzzle, rightMuzzle;
-    [SerializeField] GameObject leftMuzzlePrefab, rightMuzzlePrefab;
+    //[SerializeField] Transform leftMuzzle, rightMuzzle;
+    [SerializeField] GameObject leftMuzzleFX, rightMuzzleFX;
     [SerializeField] SoundID cannonAudio = default;
     public bool paused;
 
-    bool canLeftShoot = true, canRightShoot = true;
-    Transform hitObject;
+    private bool canLeftShoot = true, canRightShoot = true;
+    private Transform hitObject;
+    private Vector3 hitPos;
 
     private void Update()
     {
@@ -44,11 +46,12 @@ public class PlayerShooting : MonoBehaviour
             StartCoroutine(LeftCannonCooldown());
             leftCooldownIcon.fillAmount = 0f;      
             //Instantiate(leftMuzzlePrefab, leftMuzzle);
-            StartCoroutine(MuzzleTimer(leftMuzzlePrefab));
+            StartCoroutine(MuzzleTimer(leftMuzzleFX));
             BroAudio.Play(cannonAudio);
 
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out RaycastHit hit, Mathf.Infinity))
             {
+                hitPos = hit.point;
                 hitObject = hit.transform;
                 HitTarget();
             }
@@ -60,11 +63,12 @@ public class PlayerShooting : MonoBehaviour
             StartCoroutine(RightCannonCooldown());
             rightCooldownIcon.fillAmount = 0f;
             //Instantiate(rightMuzzlePrefab, rightMuzzle);
-            StartCoroutine(MuzzleTimer(rightMuzzlePrefab));
+            StartCoroutine(MuzzleTimer(rightMuzzleFX));
             BroAudio.Play(cannonAudio);
 
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out RaycastHit hit, Mathf.Infinity))
             {
+                hitPos = hit.point;
                 hitObject = hit.transform;
                 HitTarget();
             }
@@ -73,9 +77,13 @@ public class PlayerShooting : MonoBehaviour
 
     private void HitTarget()
     {
-        //explosion.gameObject.SetActive(true);
-        //explosion.GetComponent<MeshRenderer>().enabled = true;
-        //explosion.transform.position = hit.point;
+        hitFX = HitFXPooling.SharedInstance.GetPooledObject();
+        if (hitFX != null)
+        {
+            hitFX.transform.position = hitPos;
+            StartCoroutine(HitFXTimer(hitFX));
+        }
+
         if (hitObject.CompareTag("Destructible"))
         {
             if (hitObject.GetComponent<Destructible>() != null)
@@ -103,5 +111,11 @@ public class PlayerShooting : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         muzzle.SetActive(false);
     }
-
+    
+    private IEnumerator HitFXTimer(GameObject fx)
+    {
+        fx.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        fx.SetActive(false);
+    }
 }
