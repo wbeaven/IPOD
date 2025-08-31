@@ -77,7 +77,8 @@ public class PlayerShooting : MonoBehaviour
 
     private void HitTarget()
     {
-        hitFX = HitFXPooling.SharedInstance.GetPooledObject();
+        //hitFX = ObjectPooler.Instance.GetPooledObject();
+        hitFX = ObjectPool.SharedInstance.GetPooledObject("hitFX");
         if (hitFX != null)
         {
             hitFX.transform.position = hitPos;
@@ -86,10 +87,11 @@ public class PlayerShooting : MonoBehaviour
 
         if (hitObject.CompareTag("Destructible"))
         {
-            if (hitObject.GetComponent<Destructible>() != null)
-                hitObject.GetComponent<Destructible>().Damage(mainCannonDmg);
-            else if (hitObject.GetComponent<EnemyHealth>() != null)
-                hitObject.GetComponent<EnemyHealth>().Damage(mainCannonDmg);
+            IDamageable damageable = hitObject.GetComponent<IDamageable>();
+            if (damageable != null)
+            {
+                damageable.Damage(mainCannonDmg);
+            }
         }
     }
 

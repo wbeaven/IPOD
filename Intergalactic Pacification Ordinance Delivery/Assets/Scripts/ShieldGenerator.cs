@@ -1,24 +1,15 @@
+using Ami.BroAudio;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour, IDamageable
+public class ShieldGenerator : MonoBehaviour, IDamageable
 {
     public float health = 100f;
-    [SerializeField] GameObject visuals;
+    [SerializeField] GameObject generatorVisuals, shield;
 
     private GameObject explosion;
     private bool alive = true;
-    private EnemyShooting enemyShooting = null;
-    private EnemySwarm enemySwarm = null;
-
-    private void Start()
-    {
-        if (GetComponent<EnemyShooting>() != null)
-            enemyShooting = GetComponent<EnemyShooting>();
-        if (transform.parent.GetComponentInParent<EnemySwarm>() != null)
-            enemySwarm = transform.parent.GetComponentInParent<EnemySwarm>();
-    }
 
     private void Update()
     {
@@ -26,16 +17,8 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         {
             alive = false;
             GetComponent<SphereCollider>().enabled = false;
-            visuals.SetActive(false);
-            if (enemyShooting != null)
-            {
-                GetComponent<EnemyShooting>().bullet.gameObject.SetActive(false);
-                GetComponent<EnemyShooting>().enabled = false;
-            }
-            if (enemySwarm != null)
-            {
-                enemySwarm.Destroyed();
-            }
+            generatorVisuals.SetActive(false);
+            shield.SetActive(false);
             explosion = ObjectPool.SharedInstance.GetPooledObject("enemyDestroyedFX");
             if (explosion != null)
             {
